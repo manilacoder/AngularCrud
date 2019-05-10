@@ -5,13 +5,13 @@
   </div>
   <div class="panel-body">
 
-    <div class="form-group" [class.has-error]="nameControl.invalid && nameControl.touched" [class.has-success]="nameControl.valid && nameControl.touched">
+    <div class="form-group" [class.has-error]="name.invalid && name.touched" [class.has-success]="name.valid && name.touched">
       <label for="name" class="control-label">Full Name</label>
-      <input required id="name" name="name" [(ngModel)]="employee.name" type="text" class="form-control" #nameControl="ngModel">
-      <span class="help-block" *ngIf="nameControl.invalid && nameControl.touched"> Full name is required</span>
+      <input required id="name" name="name" [(ngModel)]="employee.name" type="text" class="form-control" #name="ngModel">
+      <span class="help-block" *ngIf="name.invalid && name.touched"> Full name is required</span>
     </div>
-    
-    <div>touched: {{nameControl.touched}}</div>
+
+    <!--<div>touched: {{nameControl.touched}}</div>
     <div>untouched: {{nameControl.untouched}}</div>
     <div>pristine: {{nameControl.pristine}}</div>
     <div>dirty: {{nameControl.dirty}}</div>
@@ -23,11 +23,13 @@
     <div>pristine: {{employeeForm.pristine}}</div>
     <div>dirty: {{employeeForm.dirty}}</div>
     <div>valid: {{employeeForm.valid}}</div>
-    <div>invalid: {{employeeForm.invalid}}</div>
-
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input required id="email" name="email" [(ngModel)]="employee.email" type="text" class="form-control">
+    <div>invalid: {{employeeForm.invalid}}</div>-->
+    
+    <div class="form-group" [class.has-error]="email.invalid && email.touched" [class.has-success]="email.valid && email.touched">
+        <label for="email" class="control-label">Email</label>
+        <input required [email]="employee.email!==''" id="email" name="email" [(ngModel)]="employee.email" type="text" class="form-control" #email="ngModel">
+        <span class="help-block" *ngIf="email?.errors?.required && email.touched"> Email is required</span>
+        <span class="help-block" *ngIf="email?.errors?.email && email.touched"> Email is invalid</span>
     </div>
     
     <div class="form-group">
@@ -85,7 +87,7 @@
     <div class="row">
       <div class="form-group col-md-5">
         <label for="dateOfBirth">Date of Birth</label>
-        <input id="dateOfBirth" name="dateOfBirth" [(ngModel)]="dateOfBirth" type="text" bsDatepicker [bsConfig] = 'datePickerConfig' placement="right" class="form-control">
+        <input id="dateOfBirth" name="dateOfBirth" [(ngModel)]="employee.dateOfBirth" type="text" bsDatepicker [bsConfig] = 'datePickerConfig' placement="right" class="form-control">
       </div>
     </div>
     
